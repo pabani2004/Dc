@@ -1,0 +1,602 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sweet Love</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Crimson+Text:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Romantic animated background */
+        .romantic-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 119, 173, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 105, 180, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: dreamyFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes dreamyFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            33% { transform: scale(1.05) rotate(1deg); }
+            66% { transform: scale(1.02) rotate(-1deg); }
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            animation: floatHeart 15s infinite linear;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Rose petals falling */
+        .petal {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, #ff69b4 0%, #ff1493 100%);
+            border-radius: 0 100% 0 100%;
+            animation: petalFall 10s infinite linear;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) translateX(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Love letter card */
+        .love-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 120px rgba(255, 182, 193, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: heartbeat 2s ease-in-out infinite;
+            z-index: 10;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.01); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.01); }
+            40% { transform: scale(1); }
+        }
+
+        .love-card::before {
+            content: '💝';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 40px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .love-card::after {
+            content: '💕';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            font-size: 35px;
+            animation: sparkle 2s ease-in-out infinite reverse;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        /* Romantic title */
+        .romantic-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ff6b9d, #c66cc9, #ff6b9d);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Image container with heart frame */
+        .image-heart-frame {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-heart-frame::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #ff69b4;
+            border-radius: 50%;
+            animation: pulseRing 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseRing {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .romantic-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.3),
+                0 0 40px rgba(255, 182, 193, 0.6);
+            transition: all 0.5s ease;
+            border: 4px solid white;
+        }
+
+        .romantic-image:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(0,0,0,0.4),
+                0 0 60px rgba(255, 182, 193, 0.8);
+        }
+
+        /* Romantic buttons */
+        .romantic-btn {
+            position: relative;
+            padding: 0.8rem 2rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, #ff6b9d, #c66cc9);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 4px 15px rgba(255, 107, 157, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .romantic-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .romantic-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .romantic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(255, 107, 157, 0.6),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .romantic-btn.no-btn {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+
+        .romantic-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Love message */
+        .love-message {
+            font-size: 1.2rem;
+            color: #6a4c93;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Sparkles */
+        .sparkle-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: white;
+            animation: sparkleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { 
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            50% { 
+                transform: translateY(-30px) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Success state */
+        .success-animation {
+            animation: loveExplosion 1s ease-out;
+        }
+
+        @keyframes loveExplosion {
+            0% { 
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% { 
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% { 
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        /* Floating animation for emojis */
+        .float-emoji {
+            display: inline-block;
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+
+        @keyframes floatEmoji {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Glow text */
+        .glow-text {
+            text-shadow: 
+                0 0 10px rgba(255, 107, 157, 0.5),
+                0 0 20px rgba(255, 107, 157, 0.3),
+                0 0 30px rgba(255, 107, 157, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="romantic-bg"></div>
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <div class="love-card" id="mainCard">
+        <div class="text-center">
+            <div class="image-heart-frame">
+                <img src="https://i.pinimg.com/originals/ba/10/73/ba107359a1626be3eec537525c431f2c.gif" alt="Cute Love" class="romantic-image" id="gif">
+            </div>
+            
+            <h1 class="romantic-title mb-4" id="question">
+                Eat dark chocolate Gudu .... it's good for you!
+            </h1>
+            
+            <p class="love-message" id="message">
+                Eat dark chocolate Gudu .... it's good for you! <span class="float-emoji">🍫</span> <span class="float-emoji">💕</span>
+            </p>
+            
+            <div class="flex justify-center gap-4" id="btn-group">
+                <button class="romantic-btn yes-btn" id="yes-btn">
+                    <span>Yes, my love! 💝</span>
+                </button>
+                <button class="romantic-btn no-btn" id="no-btn">
+                    <span>Maybe later 🌹</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 15 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 15000);
+        }
+
+        // Create rose petals
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDelay = Math.random() * 10 + 's';
+            document.body.appendChild(petal);
+            
+            setTimeout(() => {
+                petal.remove();
+            }, 10000);
+        }
+
+        // Create sparkles on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = '✨';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.getElementById('sparkleContainer').appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 3000);
+            }
+        });
+
+        // Generate hearts and petals periodically
+        setInterval(createHeart, 2000);
+        setInterval(createPetal, 3000);
+
+        const mainCard = document.getElementById('mainCard');
+        const question = document.getElementById('question');
+        const message = document.getElementById('message');
+        const gif = document.getElementById('gif');
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+
+        let noClickCount = 0;
+        let yesButtonSize = 1;
+        let isMoving = false;
+
+        // Updated GIF URLs with provided Bubu and Dudu links
+        const gifs = {
+            initial: 'https://i.pinimg.com/originals/ba/10/73/ba107359a1626be3eec537525c431f2c.gif', // Initial cute Bubu Dudu
+            sad1: 'https://gifdb.com/images/thumbnail/cute-sad-bubu-dudu-panda-kick-4cn5usy9xip1m59y.gif', // Sad for first no click
+            sad2: 'https://i.pinimg.com/originals/d9/80/37/d98037ed2c38e59b9988689e6c1968bf.gif', // Sad for second no click
+            sad3: 'https://gifdb.com/images/thumbnail/cute-sad-bubu-dudu-panda-kick-4cn5usy9xip1m59y.gif', // Sad for third no click
+            sad4: 'https://i.pinimg.com/originals/d9/80/37/d98037ed2c38e59b9988689e6c1968bf.gif', // Sad for fourth no click
+            sad5: 'https://gifdb.com/images/thumbnail/cute-sad-bubu-dudu-panda-kick-4cn5usy9xip1m59y.gif', // Sad for fifth no click
+            happy: 'https://gifdb.com/images/high/cute-dancing-bubu-and-dudu-jump-z5lrit6vku8ujpgh.gif' // Happy dancing for yes click
+        };
+
+        const noClickStates = [
+            {
+                gif: gifs.sad1,
+                question: "Just one tiny piece? For me? 🥹",
+                message: "Just one tiny piece? For me? 🥹",
+                noText: "I'm not sure...",
+            },
+            {
+                gif: gifs.sad2,
+                question: "My heart is melting... not the chocolate! 💔",
+                message: "My heart is melting... not the chocolate! 💔",
+                noText: "My heart says no",
+            },
+            {
+                gif: gifs.sad3,
+                question: "Fine, more for me then! 😠",
+                message: "Fine, more for me then! 😠",
+                noText: "I really can't",
+            },
+            {
+                gif: gifs.sad4,
+                question: "Okay, last chance before I eat it all... 😥",
+                message: "Okay, last chance before I eat it all... 😥",
+                noText: "Don't wait",
+            },
+            {
+                gif: gifs.sad5,
+                question: "One last chance for love?",
+                message: "My heart is melting faster than chocolate in the sun... all for you 🌹",
+                noText: "Final no",
+            },
+        ];
+
+        function createLoveExplosion(x, y) {
+            const emojis = ['💕', '💖', '💗', '💝', '❤️', '🌹', '💐', '✨'];
+            for (let i = 0; i < 20; i++) {
+                const emoji = document.createElement('div');
+                emoji.style.position = 'absolute';
+                emoji.style.left = x + 'px';
+                emoji.style.top = y + 'px';
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.fontSize = '30px';
+                emoji.style.pointerEvents = 'none';
+                emoji.style.animation = `loveExplosion 1s ease-out forwards`;
+                emoji.style.zIndex = '1000';
+                document.body.appendChild(emoji);
+                
+                // Random direction
+                const angle = (Math.PI * 2 * i) / 20;
+                const velocity = 100 + Math.random() * 100;
+                emoji.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+                emoji.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+                
+                // Custom animation for each emoji
+                emoji.style.animation = 'none';
+                emoji.animate([
+                    { transform: 'translate(0, 0) scale(0)', opacity: 1 },
+                    { transform: `translate(var(--tx), var(--ty)) scale(1.5)`, opacity: 1, offset: 0.7 },
+                    { transform: `translate(var(--tx), var(--ty)) scale(0.5)`, opacity: 0 }
+                ], {
+                    duration: 1500,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                setTimeout(() => emoji.remove(), 1500);
+            }
+        }
+
+        noBtn.addEventListener('click', (e) => {
+            noClickCount++;
+            
+            if (noClickCount <= 5) {
+                const state = noClickStates[noClickCount - 1];
+                gif.src = state.gif;
+                question.textContent = state.question;
+                message.innerHTML = state.message;
+                noBtn.querySelector('span').textContent = state.noText;
+
+                yesButtonSize += 0.15;
+                yesBtn.style.transform = `scale(${yesButtonSize})`;
+                
+                // Add pulsing animation to yes button
+                yesBtn.style.animation = 'heartbeat 0.5s ease-in-out infinite';
+                
+                // Create hearts on no click
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(createHeart, i * 200);
+                }
+            } else {
+                question.textContent = "You can't escape the allure of chocolate! 😉";
+                message.innerHTML = "You can't escape from my heart 💕";
+                if (!isMoving) {
+                    isMoving = true;
+                    moveButton();
+                }
+            }
+        });
+
+        yesBtn.addEventListener('click', (e) => {
+            createLoveExplosion(e.clientX, e.clientY);
+            
+            // Create multiple explosions
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => createLoveExplosion(
+                    window.innerWidth / 2 + (Math.random() - 0.5) * 200,
+                    window.innerHeight / 2 + (Math.random() - 0.5) * 200
+                ), i * 200);
+            }
+            
+            mainCard.innerHTML = `
+                <div class="success-animation text-center">
+                    <div class="image-heart-frame mb-6">
+                        <img src="${gifs.happy}" alt="Love Success" class="romantic-image">
+                    </div>
+                    <h1 class="romantic-title mb-4">Yay! Chocolate tastes better with you! 🥰</h1>
+                    <p class="love-message">Every moment with you is sweeter than the finest chocolate</p>
+                    <p class="text-pink-500 text-lg mt-4 glow-text">I love you to the moon and back 🌙✨</p>
+                    <div class="mt-6">
+                        <span class="float-emoji text-4xl">🍫</span>
+                        <span class="float-emoji text-4xl mx-4">💑</span>
+                        <span class="float-emoji text-4xl">🍫</span>
+                    </div>
+                </div>
+            `;
+            
+            // Continue creating hearts in celebration
+            setInterval(createHeart, 500);
+            setInterval(createPetal, 1000);
+        });
+
+        function moveButton() {
+            if (!isMoving) return;
+            
+            const containerRect = mainCard.getBoundingClientRect();
+            const noBtnRect = noBtn.getBoundingClientRect();
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.transition = 'all 0.3s ease-out';
+            
+            const maxX = containerRect.width - noBtnRect.width - 40;
+            const maxY = containerRect.height - noBtnRect.height - 40;
+            
+            const newX = Math.random() * maxX + 20;
+            const newY = Math.random() * maxY + 20;
+            
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            
+            // Create a heart trail
+            createHeart();
+            
+            setTimeout(moveButton, 500);
+        }
+    </script>
+</body>
+</html>
